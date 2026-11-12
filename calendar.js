@@ -3,11 +3,23 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: "./google-credentials.json",
-  scopes: ["https://www.googleapis.com/auth/calendar"],
-});
+import { google } from "googleapis";
+import dotenv from "dotenv";
 
+dotenv.config();
+
+// Serverda GOOGLE_CREDENTIALS_JSON o'zgaruvchisidan, lokalda esa fayldan o'qiydi
+const authOptions = process.env.GOOGLE_CREDENTIALS_JSON
+  ? {
+      credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON),
+      scopes: ["https://www.googleapis.com/auth/calendar"],
+    }
+  : {
+      keyFile: "./google-credentials.json",
+      scopes: ["https://www.googleapis.com/auth/calendar"],
+    };
+
+const auth = new google.auth.GoogleAuth(authOptions);
 const calendar = google.calendar({ version: "v3", auth });
 const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID;
 
