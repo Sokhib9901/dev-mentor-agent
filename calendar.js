@@ -1,4 +1,4 @@
-import { google as googleApis } from "googleapis";
+import { google  } from "googleapis";
 import dotenv from "dotenv";
 
 dotenv.config();
