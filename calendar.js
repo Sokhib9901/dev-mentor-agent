@@ -1,9 +1,4 @@
-import { google } from "googleapis";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-import { google } from "googleapis";
+import { google as googleApis } from "googleapis";
 import dotenv from "dotenv";
 
 dotenv.config();
